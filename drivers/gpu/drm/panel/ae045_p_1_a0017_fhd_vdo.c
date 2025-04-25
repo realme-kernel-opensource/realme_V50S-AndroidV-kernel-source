@@ -54,8 +54,8 @@
 /* add for dips_drv log  */
 #include "../oplus/oplus_display_mtk_debug.h"
 #include "../oplus/oplus_drm_disp_panel.h"
-#define BRIGHTNESS_MAX    2047
-#define BRIGHTNESS_HALF   1023
+#define BRIGHTNESS_MAX    4095
+#define BRIGHTNESS_HALF   2047
 #define MAX_NORMAL_BRIGHTNESS   2047
 #define LCM_BRIGHTNESS_TYPE 2
 #define FHD_LCM_WIDTH  1080
@@ -66,7 +66,9 @@ extern unsigned int oplus_display_brightness;
 static int esd_brightness;
 extern unsigned int last_backlight;
 extern int oplus_display_panel_dbv_probe(struct device *dev);
+extern unsigned int oplus_max_normal_brightness;
 
+static unsigned int osc_mipi_hopping_status = 0;
 static unsigned int temp_seed_mode = 0;
 /* whether enter hbm brightness level or not */
 
@@ -221,6 +223,34 @@ static int get_mode_enum(struct drm_display_mode *m)
 	return ret;
 }
 
+static int panel_osc_freq_change(void *dsi, dcs_write_gce cb, void *handle, bool en)
+{
+	char level2_key_en[] = {0xF0, 0x5A, 0x5A};
+	char level3_key_en[] = {0xFC, 0x5A, 0x5A};
+	char osc_tb1[] = {0xDF, 0x09, 0x30, 0x95, 0x4E, 0x29, 0x4E, 0X29};	/* OSC=96.3MHz@MIPI Speed=0.998Gbps */
+	char osc_tb2[] = {0xDF, 0x09, 0x30, 0x95, 0x4D, 0x5F, 0x4D, 0X5F};	/* OSC=95.33MHz@MIPI Speed=0.998Gbps */
+	char level2_key_disable[] = {0xF0, 0xA5, 0xA5};
+	char level3_key_disable[] = {0xFC, 0xA5, 0xA5};
+
+	pr_err("Ae045 debug for %s, %d\n", __func__, en);
+
+	cb(dsi, handle, level2_key_en, ARRAY_SIZE(level2_key_en));
+	cb(dsi, handle, level3_key_en, ARRAY_SIZE(level3_key_en));
+
+	if (en == 0) {
+		cb(dsi, handle, osc_tb1, ARRAY_SIZE(osc_tb1));
+		pr_info("%s, osc en %d\n", __func__, en);
+	} else if (en == 1) {
+		cb(dsi, handle, osc_tb2, ARRAY_SIZE(osc_tb2));
+		pr_info("%s, osc en %d\n", __func__, en);
+	}
+	cb(dsi, handle, level2_key_disable, ARRAY_SIZE(level2_key_disable));
+	cb(dsi, handle, level3_key_disable, ARRAY_SIZE(level3_key_disable));
+
+	osc_mipi_hopping_status = en;
+	return 0;
+}
+
 static void lcm_panel_init(struct lcm *ctx)
 {
 	switch (mode_id) {
@@ -236,6 +266,14 @@ static void lcm_panel_init(struct lcm *ctx)
 			pr_info("%s, default fhd_dsi_on_cmd_sdc120\n", __func__);
 			push_table(ctx, dsi_on_cmd_sdc120, sizeof(dsi_on_cmd_sdc120) / sizeof(struct LCM_setting_table));
 		break;
+	}
+
+	if (osc_mipi_hopping_status == 0) {
+		push_table(ctx, osc_mode0, sizeof(osc_mode0) / sizeof(struct LCM_setting_table));    // OSC=96.3MHz@MIPI Speed=0.998Gbps
+		pr_info("%s,osc mode0\n", __func__);
+	} else if (osc_mipi_hopping_status == 1) {
+		push_table(ctx, osc_mode1, sizeof(osc_mode1) / sizeof(struct LCM_setting_table));    // OSC=95.33MHz@MIPI Speed=0.998Gbps
+		pr_info("%s,osc mode1\n", __func__);
 	}
 
 	DISP_INFO("%s, restore seed_mode:%d\n", __func__, temp_seed_mode);
@@ -382,6 +420,7 @@ static struct mtk_panel_params ext_params[MODE_NUM] = {
 	.cust_esd_check_gpio = 1,
 	.esd_check_multi = 0,
 	.oplus_serial_para0 = 0xD8,
+	.oplus_display_global_dre = 1,
 	.vendor = "AE045",
 	.manufacture = "P_1",
 	.lane_swap_en = 0,
@@ -397,7 +436,7 @@ static struct mtk_panel_params ext_params[MODE_NUM] = {
 	.lane_swap[1][MIPITX_PHY_LANE_3] = MIPITX_PHY_LANE_2,
 	.lane_swap[1][MIPITX_PHY_LANE_CK] = MIPITX_PHY_LANE_CK,
 	.lane_swap[1][MIPITX_PHY_LANE_RX] = MIPITX_PHY_LANE_0,
-	.lcm_color_mode = MTK_DRM_COLOR_MODE_DISPLAY_P3,
+	.oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
 	.output_mode = MTK_PANEL_DSC_SINGLE_PORT,
 	.dsc_params = {
 		.enable = 1,
@@ -483,6 +522,7 @@ static struct mtk_panel_params ext_params[MODE_NUM] = {
 	.cust_esd_check_gpio = 1,
 	.esd_check_multi = 0,
 	.oplus_serial_para0 = 0xD8,
+	.oplus_display_global_dre = 1,
 	.vendor = "AE045",
 	.manufacture = "P_1",
 	.lane_swap_en = 0,
@@ -498,7 +538,7 @@ static struct mtk_panel_params ext_params[MODE_NUM] = {
 	.lane_swap[1][MIPITX_PHY_LANE_3] = MIPITX_PHY_LANE_2,
 	.lane_swap[1][MIPITX_PHY_LANE_CK] = MIPITX_PHY_LANE_CK,
 	.lane_swap[1][MIPITX_PHY_LANE_RX] = MIPITX_PHY_LANE_0,
-	.lcm_color_mode = MTK_DRM_COLOR_MODE_DISPLAY_P3,
+	.oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
 	.output_mode = MTK_PANEL_DSC_SINGLE_PORT,
 	.dsc_params = {
 		.enable = 1,
@@ -1275,6 +1315,7 @@ static struct mtk_panel_funcs ext_funcs = {
 	.ext_param_set = mtk_panel_ext_param_set,
 	.ext_param_get = mtk_panel_ext_param_get,
 	.esd_backlight_recovery = oplus_esd_backlight_recovery,
+	.lcm_osc_change = panel_osc_freq_change,
 	.set_seed = panel_set_seed,
 	.esd_read_gpio = lcm_esd_gpio_read,
 	.lcm_set_hbm_max_vdo = oplus_display_panel_set_hbm_max,
@@ -1411,6 +1452,7 @@ static int lcm_probe(struct mipi_dsi_device *dsi)
 /* #ifdef OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
 	oplus_ofp_set_fp_type(&fp_type);
 /* #endif  *//* OPLUS_FEATURE_DISPLAY_ONSCREENFINGERPRINT */
+	oplus_max_normal_brightness = MAX_NORMAL_BRIGHTNESS;
 	DISP_ERR("%s, ae045_p_1_a0017_fhd_vdo lcm_probe-\n", __func__);
 	return ret;
 }

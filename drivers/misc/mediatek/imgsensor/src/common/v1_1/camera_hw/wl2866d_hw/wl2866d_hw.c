@@ -60,6 +60,24 @@ static struct wl2866d_ldomap ldolist[] = {
     //{IMGSENSOR_SENSOR_IDX_MAIN2, AVDD, REAR_2M_AVDD}, //BackMono AVDD
     //{IMGSENSOR_SENSOR_IDX_MAIN2, DOVDD, MT6377_VTP_DOVDD}, // mt6377 pmu vtp for 2m dovdd
 };
+
+static struct wl2866d_ldomap ldolist_dongfeng[] = {
+    //main 50M
+    {IMGSENSOR_SENSOR_IDX_MAIN, AVDD, MAIN_AVDD1}, //BackMain AVDD
+    {IMGSENSOR_SENSOR_IDX_MAIN, DVDD, MAIN_DVDD1}, //BackMain DVDD
+    //{IMGSENSOR_SENSOR_IDX_MAIN, DOVDD, MAIN_DOVDD}, //BackMain DOVDD
+    //{IMGSENSOR_SENSOR_IDX_MAIN, AFVDD, MAIN_AFVDD}, //BackMain AFVDD
+
+    //front 16M
+    {IMGSENSOR_SENSOR_IDX_SUB, AVDD, FRONT_AVDD2}, //FrontMain AVDD
+    {IMGSENSOR_SENSOR_IDX_SUB, DVDD, FRONT_DVDD2}, //FrontMain DVDD
+    //{IMGSENSOR_SENSOR_IDX_SUB, DOVDD, MT6377_VTP_DOVDD}, // mt6377 pmu vtp for frontcam dovdd
+
+	 //mono 2M
+    {IMGSENSOR_SENSOR_IDX_MAIN2, AVDD, FRONT_AVDD2}, //BackMono AVDD
+    //{IMGSENSOR_SENSOR_IDX_MAIN2, DOVDD, MT6377_VTP_DOVDD}, // mt6377 pmu vtp for 2m dovdd
+};
+
 static struct wl2866d_ldomap ldolist_rado[] = {
     //main 50M
     {IMGSENSOR_SENSOR_IDX_MAIN, AVDD, MAIN_AVDD1}, //BackMain AVDD
@@ -133,6 +151,14 @@ static enum IMGSENSOR_RETURN wl2866d_hw_set(
         for(i = 0; i < (sizeof(ldolist_rado) / sizeof(ldolist_rado[0])); i++) {
             if(sensor_idx == ldolist_rado[i].sensor_index && pin == ldolist_rado[i].seq_type) {
                ldonum = ldolist_rado[i].ldo_selected;
+               WL2866D_PRINT("[wl2866d_hw] %s sensor %d, seq_type = %d matched ldo %d\n", __FUNCTION__, sensor_idx, pin, ldonum + 1);
+               break;
+            }
+        }
+    } else if (is_project(24751) || is_project(24752)) {
+        for(i = 0; i < (sizeof(ldolist_dongfeng) / sizeof(ldolist_dongfeng[0])); i++) {
+            if(sensor_idx == ldolist_dongfeng[i].sensor_index && pin == ldolist_dongfeng[i].seq_type) {
+               ldonum = ldolist_dongfeng[i].ldo_selected;
                WL2866D_PRINT("[wl2866d_hw] %s sensor %d, seq_type = %d matched ldo %d\n", __FUNCTION__, sensor_idx, pin, ldonum + 1);
                break;
             }

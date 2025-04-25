@@ -728,6 +728,12 @@
 #define SENSOR_DRVNAME_SC202CS_MIPI_RAW_24690            "sc202cs_mipi_raw_24690"
 #define GC02M1_SENSOR_ID_24690                         (0x02e0 + 0xf)//0x02ef
 #define SENSOR_DRVNAME_GC02M1_MIPI_RAW_24690           "gc02m1_mipi_raw_24690"
+#define GC32E1_SENSOR_ID_BARLEY                        (0x32e1 + 0x5)//0x32e6
+#define SENSOR_DRVNAME_GC32E1_MIPI_RAW_BARLEY         "gc32e1_mipi_raw_barley"
+#define GC32E1_SENSOR_ID_24688                        (0x32e1 + 0x6)//0x32e7
+#define SENSOR_DRVNAME_GC32E1_MIPI_RAW_24688         "gc32e1_mipi_raw_24688"
+#define GC08A8_SENSOR_ID_23706                        0x8a9
+#define SENSOR_DRVNAME_GC08A8_MIPI_RAW_23706         "gc08a8_mipi_raw_23706"
 #define OV50D40_SENSOR_ID_RADO                      (0x565044 + 0x3)//0x565047
 #define SENSOR_DRVNAME_OV50D40_MIPI_RAW_RADO        "ov50d40_mipi_raw_rado"
 #define OV13B10_SENSOR_ID_RADO                      (0x560d43 + 0x3)//0x560d46
@@ -744,6 +750,14 @@
 #define SENSOR_DRVNAME_GC02M3_MIPI_RAW_RADO          "gc02m3_mipi_raw_rado"
 #define IMX471_SENSOR_ID_RADO                        (0x0471 + 0x4)//0x0475
 #define SENSOR_DRVNAME_IMX471_MIPI_RAW_RADO          "imx471_mipi_raw_rado"
+#define OV50D40_SENSOR_ID_DONGFENG                      (0x565044 + 0x4)//0x565047
+#define SENSOR_DRVNAME_OV50D40_MIPI_RAW_DONGFENG        "ov50d40_mipi_raw_dongfeng"
+#define GC02M1_SENSOR_ID_DONGFENG                         (0x02e0 + 0xd)//0x02eh
+#define SENSOR_DRVNAME_GC02M1_MIPI_RAW_DONGFENG           "gc02m1_mipi_raw_dongfeng"
+#define SC201ACS_SENSOR_ID_DONGFENG                      (0xeb52 + 0x5)//0xeb56
+#define SENSOR_DRVNAME_SC201ACS_MIPI_RAW_DONGFENG        "sc201acs_mipi_raw_dongfeng"
+#define IMX471_SENSOR_ID_DONGFENG                        (0x0471 + 0x5)//0x0475
+#define SENSOR_DRVNAME_IMX471_MIPI_RAW_DONGFENG          "imx471_mipi_raw_dongfeng"
 #endif /*OPLUS_FEATURE_CAMERA_COMMON*/
 #ifdef OPLUS_FEATURE_CAMERA_COMMON
 #define SENSOR_ID_OFFSET_LUNA                       0x1000

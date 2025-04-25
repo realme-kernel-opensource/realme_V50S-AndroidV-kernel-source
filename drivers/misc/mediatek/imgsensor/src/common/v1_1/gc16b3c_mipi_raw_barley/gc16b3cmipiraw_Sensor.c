@@ -2409,7 +2409,7 @@ static void custom3_setting(void)
 	pr_debug("[%s] custom3_End\n", __func__);
 }
 
-/*static kal_uint32 set_test_pattern_mode(kal_bool enable)
+static kal_uint32 set_test_pattern_mode(kal_bool enable)
 {
 	pr_debug("enable: %d\n", enable);
 
@@ -2425,7 +2425,7 @@ static void custom3_setting(void)
 	imgsensor.test_pattern = enable;
 	spin_unlock(&imgsensor_drv_lock);
 	return ERROR_NONE;
-}*/
+}
 
 /*************************************************************************
  * FUNCTION
@@ -3440,9 +3440,9 @@ static kal_uint32 feature_control(MSDK_SENSOR_FEATURE_ENUM feature_id,
 				(enum MSDK_SCENARIO_ID_ENUM)*(feature_data),
 				(MUINT32 *)(uintptr_t)(*(feature_data+1)));
 		break;
-/*	case SENSOR_FEATURE_SET_TEST_PATTERN:
+	case SENSOR_FEATURE_SET_TEST_PATTERN:
 		set_test_pattern_mode((BOOL)*feature_data);
-		break;*/
+		break;
 	case SENSOR_FEATURE_GET_TEST_PATTERN_CHECKSUM_VALUE:
 		/* for factory mode auto testing */
 		*feature_return_para_32 = imgsensor_info.checksum_value;

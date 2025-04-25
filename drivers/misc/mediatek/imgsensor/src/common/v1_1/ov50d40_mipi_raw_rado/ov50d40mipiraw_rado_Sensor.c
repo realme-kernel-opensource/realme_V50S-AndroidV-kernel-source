@@ -371,7 +371,7 @@ static struct SET_PD_BLOCK_INFO_T imgsensor_pd_info_custom3_video = {
     .i4BlockNumX = 240,
     .i4BlockNumY = 135,
     .i4Crop = { {8, 0}, {8, 0}, {8, 388}, {0, 0}, {8, 388},
-        {8, 0}, {8, 0},{8, 388} },
+        {8, 0}, {8, 0},{128, 456} },
 };
 //imgsensor_pd_info for custom4
 static struct SET_PD_BLOCK_INFO_T imgsensor_pd_info_custom4 = {
@@ -2025,7 +2025,7 @@ static kal_uint32 feature_control(MSDK_SENSOR_FEATURE_ENUM feature_id,
     case SENSOR_FEATURE_GET_BINNING_TYPE:
         switch (*(feature_data + 1)) {
             default:
-                *feature_return_para_32 = 1470; /*BINNING_AVERAGED*/
+                *feature_return_para_32 = 1; /*BINNING_AVERAGED*/
                 break;
             }
         LOG_INF("SENSOR_FEATURE_GET_BINNING_TYPE AE_binning_type:%d,\n",

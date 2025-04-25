@@ -40,12 +40,13 @@
         touchpanel,smooth-level = <255 15 40 80 160 240>;
         touchpanel,sensitive-level = <255 30 25 20 10 8>;
         touchpanel,high-frame-rate-time = <20>;
+        touchpanel,single-optimized-time = <8>;
 
         panel_type = <8>;
         firmware_name = "0xAC116F00";
-        platform_support_project = <24751 24752>;
-        platform_support_project_dir = <24751 24752>;
-        platform_support_project_commandline = "default_commandline","default_commandline";
+        platform_support_project = <24751 24752 24782>;
+        platform_support_project_dir = <24751 24751 24751>;
+        platform_support_project_commandline = "default_commandline","default_commandline","default_commandline";
 
         prevention,curved_screen_V2;
         prevention,grip_disable_level = <6>;
@@ -53,7 +54,7 @@
         prevention,makeup_cnt_weight = <4 1 2 2 2>;
         prevention,large_corner_range = <960 2400>;
         prevention,large_corner_judge_condition = <500 300 800 7 7>;
-        prevention,trx_reject_condition = <8 6 7>;
+        prevention,trx_reject_condition = <9 6 7>;
         prevention,trx_strict_reject_condition = <8 5 6>;
         prevention,large_judge_time_ms = <500 50 30>;
         prevention,large_exit_condition = <8 8 2>;
@@ -80,6 +81,15 @@
         prevention,max_rx_exit_distance = <1 5 150 240 1600>;
         prevention,dynamic_finger_hold_exit_distance = <1 240 1600 360>;
         prevention,edge_sliding_matched_support = <1 150 3 0>;
+        //grip v4.2 reclining mode
+        prevention,reclining_mode_support = <1>;
+        prevention,long_eliminate_point_type_recli = <2 8640 6400 240 19200 500 0>;
+        prevention,finger_hold_differ_size_recli = <1 0 240 400>;
+        prevention,finger_hold_max_rx_exit_distance_recli = <4 240 1600>;
+        prevention,max_rx_exit_distance_recli = <1 4 100 240 1600>;
+        prevention,dynamic_finger_hold_exit_distance_recli = <1 240 1600 360>;
+        prevention,edge_sliding_matched_support_recli = <1 200 3 0>;
+        prevention,long_edge_condition_recli = <160 80 120 80>;
 
         /* SW Support Feature Control */
         black_gesture_support;
@@ -103,6 +113,9 @@
         disable_suspend_irq_handler_support;
         palm_to_sleep_support;
         snr_read_support;
+        esd_handle_support;
+        diaphragm_touch_support;
+        report_rate_white_list_support;
         /*
             *Virtual Key Config:
             *1:touchpanel,button-type: <virtualkey_type  supportted_button-map>

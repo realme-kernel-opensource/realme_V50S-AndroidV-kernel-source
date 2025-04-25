@@ -496,6 +496,50 @@ struct IMGSENSOR_HW_POWER_SEQ sensor_power_sequence[] = {
         },
     },
 #endif
+#if defined(GC32E1_MIPI_RAW_BARLEY)
+    {
+        SENSOR_DRVNAME_GC32E1_MIPI_RAW_BARLEY,
+        {
+            {RST, Vol_Low,  1},
+            {DOVDD, Vol_1800, 1},
+            {AVDD1_GPIO, Vol_High, 2},
+            {DVDD, Vol_1200, 1},
+            {AVDD, Vol_2800, 1},
+            {SensorMCLK, Vol_High, 10},
+            {AFVDD, Vol_2800, 3},
+            {RST, Vol_High, 1},
+        },
+    },
+#endif
+#if defined(GC32E1_MIPI_RAW_24688)
+    {
+        SENSOR_DRVNAME_GC32E1_MIPI_RAW_24688,
+        {
+            {RST, Vol_Low,  1},
+            {DOVDD, Vol_1800, 1},
+            {AVDD1_GPIO, Vol_High, 2},
+            {DVDD, Vol_1200, 1},
+            {AVDD, Vol_2800, 1},
+            {AFVDD, Vol_2800, 3},
+            {SensorMCLK, Vol_High, 10},
+            {RST, Vol_High, 1},
+        },
+    },
+#endif
+#if defined(GC08A8_MIPI_RAW_23706)
+    {
+        SENSOR_DRVNAME_GC08A8_MIPI_RAW_23706,
+        {
+            {SensorMCLK, Vol_High, 0},
+            {RST, Vol_Low,  1},
+            {DOVDD, Vol_1800, 1},
+            {AVDD1_GPIO, Vol_High, 2},
+            {DVDD, Vol_1200, 1},
+            {AVDD, Vol_2800, 1},
+            {RST, Vol_High, 1},
+        },
+    },
+#endif
 #if defined(OV50D40_MIPI_RAW_ALPHAL5)
     {
         SENSOR_DRVNAME_OV50D40_MIPI_RAW_ALPHAL5,
@@ -601,6 +645,59 @@ struct IMGSENSOR_HW_POWER_SEQ sensor_power_sequence[] = {
             {DOVDD, Vol_1800, 1},
             {AVDD1_GPIO, Vol_High, 2},
             {AVDD, Vol_2800, 5},
+            {SensorMCLK, Vol_High, 1},
+            {RST, Vol_High, 2},
+        },
+    },
+#endif
+#if defined(OV50D40_MIPI_RAW_DONGFENG)
+    {
+        SENSOR_DRVNAME_OV50D40_MIPI_RAW_DONGFENG,
+        {
+            {RST, Vol_Low, 1},
+            {DOVDD, Vol_1800, 3},
+            {AVDD, Vol_2800, 1},
+            {DVDD, Vol_1200, 1},
+            {AFVDD, Vol_2800, 1},
+            {SensorMCLK, Vol_High, 2},
+            {RST, Vol_High, 5},
+        },
+    },
+#endif
+#if defined(GC02M1_MIPI_RAW_DONGFENG)
+    {
+        SENSOR_DRVNAME_GC02M1_MIPI_RAW_DONGFENG,
+        {
+            {RST, Vol_Low, 1},
+            {DOVDD, Vol_1800, 1},
+            {AVDD, Vol_2800, 5},
+            {SensorMCLK, Vol_High, 1},
+            {RST, Vol_High, 2},
+        },
+    },
+#endif
+#if defined(SC201ACS_MIPI_RAW_DONGFENG)
+    {
+        SENSOR_DRVNAME_SC201ACS_MIPI_RAW_DONGFENG,
+        {
+            {RST, Vol_Low, 0},
+            {DOVDD, Vol_1800, 0},//5
+            {AVDD, Vol_2800, 1},//3
+            {RST, Vol_High, 1},//1
+            {RST, Vol_Low, 1},//1
+            {RST, Vol_High, 4},//1
+            {SensorMCLK, Vol_High, 4},//15
+        },
+    },
+#endif
+#if defined(IMX471_MIPI_RAW_DONGFENG)
+    {
+        SENSOR_DRVNAME_IMX471_MIPI_RAW_DONGFENG,
+        {
+            {RST, Vol_Low, 1},
+            {AVDD, Vol_2900, 0},
+            {DVDD, Vol_1100, 0},
+            {DOVDD, Vol_1800, 1},
             {SensorMCLK, Vol_High, 1},
             {RST, Vol_High, 2},
         },

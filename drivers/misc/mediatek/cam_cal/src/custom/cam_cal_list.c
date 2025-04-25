@@ -63,6 +63,10 @@ struct stCAM_CAL_LIST_STRUCT g_camCalList[] = {
 	{OV08D10_SENSOR_ID_23706, 0xA2, Common_read_region},
 	{GC16B3C_SENSOR_ID_BARLEY, 0xA2, Common_read_region, MAX_EEPROM_SIZE_8K},
 	{S5KJNS_SENSOR_ID_BARLEY, 0xA0, Common_read_region, MAX_EEPROM_SIZE_16K},
+	{GC32E1_SENSOR_ID_BARLEY, 0xA0, Common_read_region, MAX_EEPROM_SIZE_8K},
+	{GC32E1_SENSOR_ID_24688, 0xA0, Common_read_region, MAX_EEPROM_SIZE_8K},
+	{GC08A8_SENSOR_ID_23706, 0x20, Gc08a8_read_region, MAX_EEPROM_SIZE_8K},
+	{GC08A8_SENSOR_ID_BARLEY, 0x20, Gc08a8_2_read_region, MAX_EEPROM_SIZE_8K},
 	/*rado*/
 	{OV50D40_SENSOR_ID_RADO, 0xA0, Common_read_region, MAX_EEPROM_SIZE_8K},
 	{OV13B10_SENSOR_ID_RADO, 0xB0, Common_read_region, MAX_EEPROM_SIZE_8K},
@@ -70,6 +74,9 @@ struct stCAM_CAL_LIST_STRUCT g_camCalList[] = {
 	{SC820CS_SENSOR_ID_RADO, 0xA8, Common_read_region},
 	{S5KJNS_SENSOR_ID_RADO, 0xA0, Common_read_region, MAX_EEPROM_SIZE_16K},
 	{IMX471_SENSOR_ID_RADO, 0xA8, Common_read_region, MAX_EEPROM_SIZE_8K},
+	/*dongfeng25*/
+	{OV50D40_SENSOR_ID_DONGFENG, 0xA0, Common_read_region, MAX_EEPROM_SIZE_8K},
+	{IMX471_SENSOR_ID_DONGFENG, 0xA8, Common_read_region, MAX_EEPROM_SIZE_8K},
 #ifdef OPLUS_FEATURE_CAMERA_COMMON
 	{IMX709LUNA_SENSOR_ID, 0xA8, Common_read_region, MAX_EEPROM_SIZE_16K},
 	{IMX766LUNA_SENSOR_ID, 0xA0, Common_read_region, MAX_EEPROM_SIZE_32K},

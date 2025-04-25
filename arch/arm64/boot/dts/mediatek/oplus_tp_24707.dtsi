@@ -1,5 +1,4 @@
 
-#include "mediatek/oplus-24707-tpfw.dtsi"
 &spi6 {
 	status = "okay";
 	#address-cells = <1>;

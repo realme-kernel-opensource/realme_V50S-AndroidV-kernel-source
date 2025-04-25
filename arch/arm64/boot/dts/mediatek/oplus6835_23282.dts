@@ -692,6 +692,14 @@
 	//#endif  /*OPLUS_VENDOR_SWTP*/
 };
 
+&odm {
+/* Add for low_mem_optimize */
+	low_mem_optimize {
+		compatible = "oplus,extra_free_kbytes";
+		extra_free_kbytes;
+	};
+};
+
 #include <oplus6835_23282/cust.dtsi>
 #include "mediatek/cust_mt6835_barley_thermal.dtsi"
 /*#include "mediatek/cust_mt6985_luna_thermal.dtsi"*/

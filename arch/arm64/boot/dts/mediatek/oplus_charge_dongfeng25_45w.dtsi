@@ -18,7 +18,7 @@
  * IRQ
  * EINT5(PD IRQ)                -->GPIO12
  * EINT6(CHG IRQ)               -->GPIO6
- * GPIO4(CC DIR)           --> GPIO3
+ * GPIO4(CC DIR)           --> 不支持
  *
  * GPIO
  * MAIN/CCLOGIN_SCL               --> GPIO133(SCL3)
@@ -77,11 +77,11 @@
 };
 
 &u2port0 {
-	mediatek,eye-vrt = <7>;
-	mediatek,eye-term= <5>;
+	mediatek,eye-vrt = <6>;
+	mediatek,eye-term= <1>;
 	mediatek,rev6 = <2>;
-	mediatek,eye-vrt-host = <5>;
-	mediatek,eye-term-host = <4>;
+	mediatek,eye-vrt-host = <6>;
+	mediatek,eye-term-host = <1>;
 	mediatek,rev6-host = <2>;
 	mediatek,discth = <0xc>;
 	mediatek,rx-sqth = <3>;
@@ -121,13 +121,11 @@
 	io-channels = <&auxadc 6>,<&auxadc 4>,<&auxadc 3>,<&auxadc 2>;
 	io-channel-names = "auxadc6_batt_btb_temp","usb_temp_v_l","usb_temp_v_r","auxadc2-chargeric_temp";
 	pinctrl-names = "charger_gpio_as_output_low","charger_gpio_as_output_high",
-					"ccdetect_active","ccdetect_sleep","dischg_enable","dischg_disable";
+					"dischg_enable","dischg_disable";
 	pinctrl-0 = <&charger_gpio_as_output_low>;
 	pinctrl-1 = <&charger_gpio_as_output_high>;
-	pinctrl-2 = <&ccdetect_active>;
-	pinctrl-3 = <&ccdetect_sleep>;
-	pinctrl-4 = <&dischg_enable>;
-	pinctrl-5 = <&dischg_disable>;
+	pinctrl-2 = <&dischg_enable>;
+	pinctrl-3 = <&dischg_disable>;
 
 	gauge = <&mtk_gauge>;
 	charger = <&sc6607>;
@@ -311,7 +309,6 @@
 
 	qcom,vooc-max-input-volt-support = <11000>;     //11V
 	qcom,vooc-max-input-current-support = <4100>;   //4.1A
-	qcom,qc_not_support = <1>;
 	qcom,support_3p6_standard;
 	qcom,usb_ntc_pullup = <100000>;
 	qcom,mastercharger_psy_set;
@@ -337,7 +334,6 @@
 	qcom,usbtemp_cool_down_recover_gap_low = <6>;
 	qcom,usbtemp_cool_down_recover_gap_high = <15>;
 	qcom,dischg-gpio = <&pio 34 0x00>;/*VBUS_SHORT*/
-	qcom,ccdetect-gpio = <&pio 3 0x00>;
 
 	oplus,uart_tx-gpio = <&pio 50 0x00>;
 	oplus,uart_rx-gpio = <&pio 51 0x00>;
@@ -409,7 +405,6 @@
 		ovp_reg = <0x36>; /* 4850mv */
 		ocp_reg = <0xf>;    /* 4.75A*/
 		sc,charge-detect-enable;
-		sc,disable-qc;
 		/*
 		 * Charger name
 		 * Main charger: primary_chg
@@ -514,7 +509,7 @@
 
 		svooc_charge_strategy {
 			strategy_soc_0_to_50 {
-				strategy_temp_little_cold =	<4150 30 0 0 0
+				strategy_temp_little_cold =	<4150 15 0 0 0
 								 4500 10 1 0 0>;
 				strategy_temp_cool =		<4150 25 0 0 0
 								 4150 20 0 0 0
@@ -682,23 +677,6 @@
 		pins_cmd_dat {
 			pinmux = <PINMUX_GPIO124__FUNC_GPIO124>;
 			output-low;
-		};
-	};
-/*CC_INTB*/
-	ccdetect_active: ccdetect_active {
-		pins_cmd_dat {
-			pinmux = <PINMUX_GPIO3__FUNC_GPIO3>;
-			input-enable;
-			slew-rate = <0>;
-			bias-disable;
-		};
-	};
-	ccdetect_sleep: ccdetect_sleep {
-		pins_cmd_dat {
-			pinmux = <PINMUX_GPIO3__FUNC_GPIO3>;
-			input-enable;
-			slew-rate = <0>;
-			bias-disable;
 		};
 	};
 };

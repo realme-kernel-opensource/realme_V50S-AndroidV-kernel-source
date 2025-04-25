@@ -107,6 +107,9 @@ struct mt_i2c {
 #define IMGSENSOR_I2C_SPEED              400
 #endif
 
+extern struct IMGSENSOR_I2C_CFG *pgi2c_cfg_legacy[IMGSENSOR_SENSOR_IDX_MAX_NUM];
+extern struct IMGSENSOR_I2C gi2c;
+
 struct IMGSENSOR_I2C_STATUS {
 	u8 reserved:7;
 	u8 filter_msg:1;

@@ -187,9 +187,9 @@
 			ps_adjust_max = <2350>;
 			sampling_count = <5>;
 			step_max = <800>;
-			step_min = <100>;
-			step_div = <1000>;
-			anti_shake_delta = <100>;
+			step_min = <50>;
+			step_div = <2000>;
+			anti_shake_delta = <50>;
 			dynamic_cali_max = <7000>;
 			raw2offset_radio = <1000>;
 			offset_max = <60000>;
@@ -286,6 +286,15 @@
 			als_coef_e = <6944>; //*100
 			als_coef_ratio = <100>;
 		};
+		als_panel_txd_ili9883c_2: als_panel_txd_ili9883c_2 {
+			status = "okay";
+			als_coef_a = <23300>; //*100
+			als_coef_b = <1350>; //*100
+			als_coef_c = <1854>; //*100
+			als_coef_d = <5409>; //*100
+			als_coef_e = <11713>; //*100
+			als_coef_ratio = <100>;
+		};
 		rear_cct_1: rear_cct_1 {
 			status = "okay";
 			sensor_name = <6>; // STK31862
@@ -355,7 +364,7 @@
 		};
 		oplus_fusion: oplus_fusion {
 			status = "okay";
-			set_mag_10ms = <1>;
+			set_mag_10ms = <0>;
 		};
 		palm_detect: palm_detect{
 			status = "okay";

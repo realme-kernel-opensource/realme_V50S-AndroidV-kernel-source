@@ -410,9 +410,9 @@ static int jdi_enable(struct drm_panel *panel)
         return 0;
 }
 
-#define HFP (172)
+#define HFP (80)
 #define HSA (4)
-#define HBP (20)
+#define HBP (36)
 #define VSA (4)
 #define VBP (40)
 #define VAC (2400)
@@ -426,12 +426,12 @@ static int jdi_enable(struct drm_panel *panel)
 #define VFP_120hz (40)
 #define DYN_PLL_CLK (455)
 #define DYN_DATA_RATE (910)
-#define HFP_DYN (123)
+#define HFP_DYN (36)
 #define PLL_CLOCK (499)
 #define DATA_RATE (998)
 
 static const struct drm_display_mode default_mode_30hz = {
-        .clock = 381422,
+        .clock = 358704,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -443,7 +443,7 @@ static const struct drm_display_mode default_mode_30hz = {
 };
 
 static const struct drm_display_mode default_mode_45hz = {
-        .clock = 378627,
+        .clock = 356076,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -455,7 +455,7 @@ static const struct drm_display_mode default_mode_45hz = {
 };
 
 static const struct drm_display_mode default_mode_48hz = {
-        .clock = 378758,
+        .clock = 356198,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -467,7 +467,7 @@ static const struct drm_display_mode default_mode_48hz = {
 };
 
 static const struct drm_display_mode default_mode_50hz = {
-        .clock = 379227,
+        .clock = 356640,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -479,7 +479,7 @@ static const struct drm_display_mode default_mode_50hz = {
 };
 
 static const struct drm_display_mode performance_mode_60hz = {
-        .clock = 380044,
+        .clock = 357408,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -490,7 +490,7 @@ static const struct drm_display_mode performance_mode_60hz = {
         .vtotal = VAC + VFP_60hz + VSA + VBP,
 };
 static const struct drm_display_mode performance_mode_90hz = {
-        .clock = 380350,
+        .clock = 357696,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -502,7 +502,7 @@ static const struct drm_display_mode performance_mode_90hz = {
 };
 
 static const struct drm_display_mode performance_mode_120hz = {
-        .clock = 380350,
+        .clock = 357696,
         .hdisplay = HAC,
         .hsync_start = HAC + HFP,
         .hsync_end = HAC + HFP + HSA,
@@ -527,7 +527,7 @@ static struct mtk_panel_params ext_params_30hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -567,7 +567,7 @@ static struct mtk_panel_params ext_params_30hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -604,7 +604,7 @@ static struct mtk_panel_params ext_params_45hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -644,7 +644,7 @@ static struct mtk_panel_params ext_params_45hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -682,7 +682,7 @@ static struct mtk_panel_params ext_params_48hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -722,7 +722,7 @@ static struct mtk_panel_params ext_params_48hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -759,7 +759,7 @@ static struct mtk_panel_params ext_params_50hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -799,7 +799,7 @@ static struct mtk_panel_params ext_params_50hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -836,7 +836,7 @@ static struct mtk_panel_params ext_params_60hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -876,7 +876,7 @@ static struct mtk_panel_params ext_params_60hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -914,7 +914,7 @@ static struct mtk_panel_params ext_params_90hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -954,7 +954,7 @@ static struct mtk_panel_params ext_params_90hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -991,7 +991,7 @@ static struct mtk_panel_params ext_params_120hz = {
                 },
                 .ssc_enable = 0,
                 .lane_swap_en = 0,
-                .ap_tx_keep_hs_during_vact = 1,
+                .ap_tx_keep_hs_during_vact = 0,
                 .output_mode = MTK_PANEL_DSC_SINGLE_PORT,
                 .dsc_params = {
                                 .enable = 1,
@@ -1031,7 +1031,7 @@ static struct mtk_panel_params ext_params_120hz = {
                 .data_rate = DATA_RATE,
                 .lfr_enable = 0,
                 .lfr_minimum_fps = 60,
-                .vdo_per_frame_lp_enable = 1,
+                .vdo_per_frame_lp_enable = 0,
                 .oplus_display_color_mode_suppor = MTK_DRM_COLOR_MODE_DISPLAY_P3,
                 .dyn_fps = {
                                 .switch_en = 1,
@@ -1195,7 +1195,7 @@ static int panel_doze_enable(struct drm_panel *panel, void *dsi, dcs_write_gce c
 
         int level;
         /*50nit*/
-        level = 444;
+        level = 368;
         aod_state = true;
 
         bl_tb0[1] = level >> 8;
@@ -1221,7 +1221,7 @@ static int panel_set_aod_light_mode(void *dsi, dcs_write_gce cb, void *handle, u
         pr_err("debug for lcm %s+\n", __func__);
 
         if (level == 0) {
-                backlight = 444;
+                backlight = 368;
 
                 bl_tb0[1] = backlight >> 8;
                 bl_tb0[2] = backlight & 0xFF;
@@ -1234,7 +1234,7 @@ static int panel_set_aod_light_mode(void *dsi, dcs_write_gce cb, void *handle, u
                 pr_info("%s, AOD backlight backlight = %d\n", __func__, backlight);
         } else {
                 /*10nit*/
-                backlight = 80;
+                backlight = 88;
 
                 bl_tb0[1] = backlight >> 8;
                 bl_tb0[2] = backlight & 0xFF;
@@ -1586,7 +1586,7 @@ static int jdi_probe(struct mipi_dsi_device *dsi)
         dsi->lanes = 4;
         dsi->format = MIPI_DSI_FMT_RGB888;
         dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
-                        MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET;
+                        MIPI_DSI_MODE_LPM | MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_CLOCK_NON_CONTINUOUS;
 
         backlight = of_parse_phandle(dev->of_node, "backlight", 0);
         if (backlight) {

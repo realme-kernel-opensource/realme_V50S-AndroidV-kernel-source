@@ -111,6 +111,9 @@
 &accdet{
         // eint_use_ext_res = <1>;
         // headset-eint-trig-mode = <2>;
-        headset-three-key-threshold = <0 82 170 306>;
+        headset-three-key-threshold = <0 80 220 400>;
         hp-eint0-disable = <1>;
+};
+&speech_usip_mem{
+	adsp-phone-call-enh-enable = <0x5>;
 };

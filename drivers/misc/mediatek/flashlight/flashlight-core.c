@@ -75,6 +75,7 @@ extern const struct flashlight_device_id flashlight_id_23281[];
 extern const struct flashlight_device_id flashlight_id_rado[];
 extern const struct flashlight_device_id flashlight_id_alphal5[];
 extern const struct flashlight_device_id flashlight_id_rado_gpio[];
+extern const struct flashlight_device_id flashlight_id_dongfeng[];
 int flashlight_device_num = 0;
 
 /******************************************************************************
@@ -372,6 +373,12 @@ int flashlight_dev_register(
 		flashlight_device_num = 1;
 	} else if (is_project(24722) || is_project(24723) || is_project(24615) || is_project(24747)) {
 		flashlight_id = flashlight_id_rado_gpio;
+		flashlight_device_num = 1;
+	}
+
+	if (is_project(24751) || is_project(24752)) {
+		pr_err("set flashlight id dongfeng\n");
+		flashlight_id = flashlight_id_dongfeng;
 		flashlight_device_num = 1;
 	}
 

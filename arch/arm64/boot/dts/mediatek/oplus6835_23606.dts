@@ -433,7 +433,7 @@ gpio_uff_cs_func: gpio_uff_cs_func {
 			oplus_bsp_uxmem_opt {
 				feature-disable;
 			};
-		};		
+		};
 	};
 };
 

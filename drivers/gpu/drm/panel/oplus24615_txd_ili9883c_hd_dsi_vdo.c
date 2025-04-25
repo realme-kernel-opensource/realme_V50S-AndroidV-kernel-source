@@ -759,7 +759,7 @@ static int panel_doze_enable(struct drm_panel *panel, void *dsi, dcs_write_gce c
 
         int level;
         /*50nit*/
-        level = 408;
+        level = 404;
         aod_state = true;
 
 
@@ -786,7 +786,7 @@ static int panel_set_aod_light_mode(void *dsi, dcs_write_gce cb, void *handle, u
         pr_err("debug for lcm %s+\n", __func__);
 
         if (level == 0) {
-                backlight = 408;
+                backlight = 404;
 
                 bl_tb0[1] = backlight >> 8;
                 bl_tb0[2] = backlight & 0xFF;
@@ -799,7 +799,7 @@ static int panel_set_aod_light_mode(void *dsi, dcs_write_gce cb, void *handle, u
                 pr_info("%s, AOD backlight backlight = %d\n", __func__, backlight);
         } else {
                 /*10nit*/
-                backlight = 88;
+                backlight = 83;
 
                 bl_tb0[1] = backlight >> 8;
                 bl_tb0[2] = backlight & 0xFF;

@@ -10,7 +10,7 @@
 #include <dt-bindings/pinctrl/mt6835-pinfunc.h>
 #include "mediatek/mt6835_6377.dtsi"
 #include "mediatek/cust_mt6835_ae045_oled_1080x2400.dtsi"
-#include "mediatek/cust_mt6835_camera_24251.dtsi"
+#include "mediatek/cust_mt6835_camera_24751.dtsi"
 
 /* #ifdef OPLUS_FEATURE_CHG_BASIC */
 /* Add for DX-2 charge device-tree */
@@ -45,6 +45,14 @@
     oplus_sim_detect {
         compatible = "oplus, sim_detect";
         Hw,sim_det = <&pio 48 0x00>;
+    };
+};
+
+&odm {
+/* Add for low_mem_optimize */
+    low_mem_optimize {
+        compatible = "oplus,extra_free_kbytes";
+        extra_free_kbytes;
     };
 };
 
@@ -225,9 +233,9 @@
 			use_tristate_gpio;
 			compatible = "hw-match, main-sub";
 			aboard-gpio0 = <&pio 111 0x00>;
-			aboard-patterns = <0 0 1 2 2>;        /*0[high-resistance] 1[pull-down] 2[pull-up]*/
+			aboard-patterns = <1 0 1>;        /*0[high-resistance] 1[pull-down] 2[pull-up]*/
 			/*main board*/
-			match-projects = <24752>;
+			match-projects = <24751 24752 24782>;
 		};
 	};
 
@@ -361,7 +369,65 @@
 				     <0x300000>; /* dram */
 };
 
+&odm {
+	oplus_mm_config: oplus,mm_config {
+		compatible = "oplus,mm_osvelte-config";
+		ram-8g {
+			oplus_boost_pool {
+				feature-disable;
+			};
+			oplus_bsp_uxmem_opt {
+				feature-disable;
+			};
+			oplus_bsp_zram_opt {
+				balance_anon_file_reclaim_always_true;
+			};
+		};
+	};
+};
+
+//Modify sd card driver
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interconnect/mtk,mt6873-emi.h>
+
+&mmc1_pins_default {
+	pins_cmd_dat {
+		pinmux = <PINMUX_GPIO75__FUNC_MSDC1_DAT0>,
+			<PINMUX_GPIO76__FUNC_MSDC1_DAT1>,
+			<PINMUX_GPIO77__FUNC_MSDC1_DAT2>,
+			<PINMUX_GPIO78__FUNC_MSDC1_DAT3>,
+			<PINMUX_GPIO74__FUNC_MSDC1_CMD>;
+		input-enable;
+		drive-strength = <4>;
+		bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+	};
+
+	pins_clk {
+		pinmux = <PINMUX_GPIO73__FUNC_MSDC1_CLK>;
+		drive-strength = <4>;
+		bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+	};
+};
+&mmc1_pins_uhs{
+	pins_cmd_dat {
+		pinmux = <PINMUX_GPIO75__FUNC_MSDC1_DAT0>,
+			<PINMUX_GPIO76__FUNC_MSDC1_DAT1>,
+			<PINMUX_GPIO77__FUNC_MSDC1_DAT2>,
+			<PINMUX_GPIO78__FUNC_MSDC1_DAT3>,
+			<PINMUX_GPIO74__FUNC_MSDC1_CMD>;
+		input-enable;
+		drive-strength = <4>;
+		bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
+	};
+
+	pins_clk {
+		pinmux = <PINMUX_GPIO73__FUNC_MSDC1_CLK>;
+		drive-strength = <4>;
+		bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
+	};
+};
+
 #include <oplus6835_24752/cust.dtsi>
-#include "mediatek/cust_mt6835_avatarl5_thermal.dtsi"
+#include "mediatek/cust_mt6835_dongfeng25_thermal.dtsi"
 /*#include "mediatek/cust_mt6985_luna_thermal.dtsi"*/
 /*End of this file, DO NOT ADD ANYTHING HERE*/

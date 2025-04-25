@@ -10,7 +10,7 @@
 #include <dt-bindings/pinctrl/mt6835-pinfunc.h>
 #include "mediatek/mt6835_6377.dtsi"
 #include "mediatek/cust_mt6835_barley_CD_lcd_720x1604.dtsi"
-#include "mediatek/cust_mt6835_camera_23700.dtsi"
+#include "mediatek/cust_mt6835_camera_24688.dtsi"
 /* #ifdef OPLUS_FEATURE_CHG_BASIC */
 /* Add for DX-2 charge device-tree */
 /*#include "mediatek/oplus_charge_23661.dtsi"*/

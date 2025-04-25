@@ -161,7 +161,15 @@ static struct LCM_setting_table init_setting_60Hz[] = {
 	{REGFLAG_CMD, 2, {0x35, 0x00}},
 	/* Dimmig off */
 	{REGFLAG_CMD, 2, {0x53, 0x20}},
+	/*aod no black*/
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x02}},
+	{REGFLAG_CMD, 2, {0x88, 0xC0}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x05}},
+        {REGFLAG_CMD, 2, {0x80, 0x18}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x1F}},
+        {REGFLAG_CMD, 2, {0x85, 0x2C}},
 	/* SleepOut+DELAY+DisplayOn */
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x00}},
 	{REGFLAG_CMD, 1, {0x11}},
 	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x4E}},
 	{REGFLAG_CMD, 2, {0xB1, 0x04}},
@@ -296,7 +304,15 @@ static struct LCM_setting_table init_setting_90Hz[] = {
 	{REGFLAG_CMD, 2, {0x35, 0x00}},
 	/* Dimmig off */
 	{REGFLAG_CMD, 2, {0x53, 0x20}},
+	/*aod no black*/
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x02}},
+	{REGFLAG_CMD, 2, {0x88, 0xC0}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x05}},
+        {REGFLAG_CMD, 2, {0x80, 0x18}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x1F}},
+        {REGFLAG_CMD, 2, {0x85, 0x2C}},
 	/* SleepOut+DELAY+DisplayOn */
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x00}},
 	{REGFLAG_CMD, 1, {0x11}},
 	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x4E}},
 	{REGFLAG_CMD, 2, {0xB1,0x04}},
@@ -431,7 +447,15 @@ static struct LCM_setting_table init_setting_120Hz[] = {
 	{REGFLAG_CMD, 2, {0x35, 0x00}},
 	/* Dimmig off */
 	{REGFLAG_CMD, 2, {0x53, 0x20}},
+	/*aod no black*/
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x02}},
+	{REGFLAG_CMD, 2, {0x88, 0xC0}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x05}},
+        {REGFLAG_CMD, 2, {0x80, 0x18}},
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x1F}},
+        {REGFLAG_CMD, 2, {0x85, 0x2C}},
 	/* SleepOut+DELAY+DisplayOn */
+	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x00}},
 	{REGFLAG_CMD, 1, {0x11}},
 	{REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x4E}},
 	{REGFLAG_CMD, 2, {0xB1,0x04}},
@@ -476,8 +500,6 @@ static struct LCM_setting_table HBM_off_setting[] = {
 static struct LCM_setting_table AOD_off_setting[] = {
         {REGFLAG_CMD, 4, {0xFF, 0x08, 0x38, 0x00}},
         {REGFLAG_CMD, 1, {0x38}},
-        {REGFLAG_CMD, 5, {0x51, 0x00, 0x00, 0x00, 0x00}},
-        {REGFLAG_DELAY, 40, {}},
 };
 
 static struct LCM_setting_table AOD_on_setting[] = {

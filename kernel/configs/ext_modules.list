@@ -6,7 +6,6 @@
 ../vendor/oplus/kernel/hans
 ../vendor/oplus/kernel/network/oplus_dns_hook
 ../vendor/oplus/kernel/network/oplus_score
-../vendor/oplus/kernel/network/oplus_sched
 ../vendor/oplus/kernel/network/oplus_apps_monitor
 ../vendor/oplus/kernel/network/oplus_qr_scan
 ../vendor/oplus/kernel/network/oplus_stats_calc

@@ -82,7 +82,7 @@ static struct imgsensor_info_struct imgsensor_info = {
 		.grabwindow_height = 2340,
 		.mipi_data_lp2hs_settle_dc = 19,//unit , ns
 		.max_framerate = 300,
-		.mipi_pixel_rate = 448800000,
+		.mipi_pixel_rate = 441600000,
 	},
 	.hs_video = {	//1280*720	120fps 	hs video
 		.pclk = 112000000,
@@ -953,7 +953,7 @@ static void capture_setting(kal_uint16 currefps)
 kal_uint16 addr_data_pair_normal_video_setting_rado_ov13b10[] = {
 	0x0100, 0x00,
 	0x0303, 0x01, // modify for WIFI interference
-	0x0305, 0x4b, // modify for WIFI interference
+	0x0305, 0x45, // modify for WIFI interference
 	0x0327, 0x05,
 	0x3501, 0x0c,
 	0x3502, 0x10,
@@ -2356,16 +2356,12 @@ static kal_uint32 set_test_pattern_mode(kal_bool enable)
 	LOG_INF("enable: %d\n", enable);
 
 	if (enable) {
-		// 0x5E00[8]: 1 enable,  0 disable
-		// 0x5E00[1:0]; 00 Color bar, 01 Random Data, 10 Square, 11 BLACK
-		write_cmos_sensor(0x5081, 0x01);
-		write_cmos_sensor(0x5000,(read_cmos_sensor(0x5000)&0xa1)|0x00 );
+		write_cmos_sensor(0x5000, 0x81);
+		write_cmos_sensor(0x5080, 0x81);
 	} else {
-		// 0x5E00[8]: 1 enable,  0 disable
-		// 0x5E00[1:0]; 00 Color bar, 01 Random Data, 10 Square, 11 BLACK
-		write_cmos_sensor(0x5081, 0x00);
-		write_cmos_sensor(0x5000,(read_cmos_sensor(0x5000)&0xa1)|0x040 );
-	}
+		write_cmos_sensor(0x5000, 0xff);
+		write_cmos_sensor(0x5080, 0x00);
+	}/*No pattern*/
 
 	spin_lock(&imgsensor_drv_lock);
 	imgsensor.test_pattern = enable;

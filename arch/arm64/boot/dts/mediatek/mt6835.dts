@@ -7514,6 +7514,16 @@
     	};
 	};
 
+	flashlights_dongfeng: flashlights_dongfeng {
+    	compatible = "mediatek,flashlights_dongfeng";
+    	decouple = <1>;
+    	channel@1 {
+                type = <0>;
+                ct = <0>;
+                part = <0>;
+    	};
+	};
+
    	flashlights_rado: flashlights_rado {
     	compatible = "mediatek,flashlights_rado";
     	decouple = <1>;

@@ -81,12 +81,12 @@
 };
 
 &u2port0 {
-    mediatek,eye-vrt = <7>;
-    mediatek,eye-term = <7>;
+    mediatek,eye-vrt = <3>;
+    mediatek,eye-term = <4>;
     mediatek,rev4 = <1>;
     mediatek,rev6 = <3>;
-    mediatek,eye-vrt-host = <7>;
-    mediatek,eye-term-host = <7>;
+    mediatek,eye-vrt-host = <3>;
+    mediatek,eye-term-host = <4>;
     mediatek,rev6-host = <3>;
     mediatek,discth = <10>;
     mediatek,rx-sqth = <5>;
@@ -362,6 +362,11 @@
 
 	oplus,uart_tx-gpio = <&pio 50 0x00>;
 	oplus,uart_rx-gpio = <&pio 51 0x00>;
+	/* Feature avoid battery swelling caused by high temp */
+	oplus,poweroff_high_batt_temp = <720>;
+	oplus,poweroff_emergency_batt_temp = <770>;
+	oplus,usbtemp_batt_temp_over_hot = <60>;
+	oplus,usbtemp_temp_gap_with_batt_temp_in_over_hot = <15>;
 };
 
 &lk_charger {
@@ -371,8 +376,10 @@
 	//sub_board_temp_support;
 	support_sdp_screenoff;
 	support_sdp_backlight;
-	support_quickboot_charge;
 	support_4p48_single_battery;
+	high-temp-scheme;
+	over_high_temp_thr = <60>;
+	is_support_sc6607;
 	max_charger_voltage = <15000000>;
 	boot_battery_voltage = <3400000>;
 	usb_charger_current = <500000>;

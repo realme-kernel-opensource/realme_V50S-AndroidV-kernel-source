@@ -435,7 +435,7 @@ gpio_uff_cs_pull_down:gpio_uff_cs_pull_down{
 			oplus_bsp_uxmem_opt {
 				feature-disable;
 			};
-		};		
+		};
 	};
 };
 

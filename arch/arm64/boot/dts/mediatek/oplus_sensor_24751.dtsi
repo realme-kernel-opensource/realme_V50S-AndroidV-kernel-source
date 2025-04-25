@@ -1,3 +1,8 @@
+&mt6377_vio28 {
+	regulator-min-microvolt = <3300000>;
+	regulator-max-microvolt = <3300000>;
+};
+
 &odm {
 	sensor_fb: sensor_fb {
 		compatible = "oplus,sensor-feedback";
@@ -59,16 +64,16 @@
 			sensor_name = <5>; // AKM09919
 			i2c_num = <0>;
 			i2c_addr = <0x0E>;
-			direction = <0>;
+			direction = <1>;
 			eint_num = <0>;
 			para_num = <2>;
 			mag_para_1 {
-				match_projects = <24679 24680 24681>; //无NFC
-				soft-mag-parameter = <9905 0 1283 0 494 0 1006 0 8943 0 105 0 452 0 854 1 10235 0>;
+				match_projects = <24751 24782>;
+				soft-mag-parameter = <9771 0 759 0 225 0 1337 0 8526 0 153 0 813 0 199 1 11256 0>;
 			};
 			mag_para_2 {
-				match_projects = <24606 24678>; //NFC
-				soft-mag-parameter = <9999 0 89 1 87 0 88 0 9992 0 18 0 286 0 137 1 10390 0>;
+				match_projects = <24752>;
+				soft-mag-parameter = <10386 0 166 1 235 0 288 1 9464 0 429 0 296 0 249 0 11644 0>;
 			};
 		};
 		/*
@@ -99,16 +104,16 @@
 			eint_num = <18>;
 			low_step = <300>;
 			high_step = <400>;
-			low_limit = <400>;
-			high_limit = <450>;
-			dirty_low_step = <180>;
-			dirty_high_step = <280>;
+			low_limit = <450>;
+			high_limit = <700>;
+			dirty_low_step = <500>;
+			dirty_high_step = <600>;
 			ps_dirty_limit = <1800>;
 			ps_ir_limit = <500>;
 			ps_adjust_min = <0>;
-			ps_adjust_max = <800>;
+			ps_adjust_max = <1850>;
 			sampling_count = <5>;
-			step_max = <400>;
+			step_max = <500>;
 			step_min = <100>;
 			step_div = <2000>;
 			anti_shake_delta = <120>;
@@ -116,7 +121,7 @@
 			raw2offset_radio = <1000>;
 			offset_max = <15000>;
 			offset_range_min = <0>;
-			offset_range_max = <65534>;
+			offset_range_max = <65535>;
 			force_cali_limit = <2000>;
 			cali_jitter_limit = <40>;
 			cal_offset_margin = <3000>;
@@ -130,10 +135,47 @@
 			eint_num = <18>;
 			direction = <0>;
 			als_buffer_length =<8>;
-			als_ratio = <125>;
+			als_ratio = <110>;
 			als_type = <0x02>; //0x01 CCT_NORMAL 0x02 CCT_WISE
 			device_name = "stk33c01";
 			als_coef_ratio = <88>;
+			als_range_flag = <1>;
+		};
+		pick_up: pick_up {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		lux_aod: lux_aod {
+			status = "okay";
+			use-proximity = <1>;
+		};
+		alsps_arch: alsps_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		cali_arch: cali_arch {
+			status = "okay";
+			new-arch-supported = <1>;
+		};
+		oplus_fusion: oplus_fusion {
+			status = "okay";
+			use_sub_accgyro = <0>;
+		};
+		palm_detect: palm_detect{
+			status = "okay";
+			is_available = <1>;
+			fold_type = <2>;
+			prox_type = <0>;
+			x_limit = <1>;
+			y_limit = <6>;
+			z_limit = <6>;
+			delta_ms_limit = <5000>;
+			delta_ms_low = <200>;
+			x_gyro_limit = <300000>;
+			y_gyro_limit = <300000>;
+			z_gyro_limit = <300000>;
+			move_limit = <8>;
+			als_limit = <3>;
 		};
 	};
 /* sensor end */

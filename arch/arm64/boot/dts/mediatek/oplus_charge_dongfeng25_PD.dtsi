@@ -16,6 +16,10 @@
 		rt-tcpc,rp_level = <0>; /* 0: Default, 1: 1.5, 2: 3.0 */
 		rt-tcpc,vconn_supply  = <1>;  /* 0: Never, 1: Always, */
 						/* 2: EMarkOnly, 3: StartOnly */
+		sc,cc_pull_up_idrive = <0x09>;
+		sc,cc_pull_down_idrive = <0x44>;
+		sc,continuous_time = <0x4E>;
+		sc,bmc_width = <0x86 0x3d 0x3b 0x10>;
 		/* rt-tcpc,disable_pe; */
 		rt1711pd,intr_gpio = <&pio 12 0x00>;
 		rt1711pd,intr_gpio_num = <12>;

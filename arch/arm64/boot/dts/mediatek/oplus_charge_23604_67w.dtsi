@@ -351,13 +351,11 @@
 	support_battery_authentication;
 	support_tuv_authentication;
 	charger_no_wiress;
-	sub_board_temp_support;
-	sub_board_adc_channel = <5>;
-	subboard_use_ap_auxadc;
+	//sub_board_temp_support;
 	support_sdp_screenoff;
 	support_sdp_backlight;
 	support_4p48_single_battery;//待确定
-	// LOW_BATTERY_NO_CHARGER_INDEX_3 = <31>;
+	LOW_BATTERY_NO_CHARGER_INDEX_3 = <31>;
 	max_charger_voltage = <15000000>;
 	boot_battery_voltage = <3400000>;
 	usb_charger_current = <500000>;

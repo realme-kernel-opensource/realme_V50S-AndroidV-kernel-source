@@ -378,6 +378,15 @@
 	status = "okay";
 };
 
+&odm {
+/* Add for low_mem_optimize */
+        low_mem_optimize {
+                compatible = "oplus,extra_free_kbytes";
+                extra_free_kbytes;
+        };
+};
+
+
 #include <oplus6835_24231/cust.dtsi>
 #include "mediatek/cust_mt6835_avatarl5_thermal.dtsi"
 /*#include "mediatek/cust_mt6985_luna_thermal.dtsi"*/

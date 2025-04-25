@@ -27,6 +27,7 @@ obj-$(CONFIG_MTK_FLASHLIGHT_23281)       += flashlights-23281.o
 obj-$(CONFIG_MTK_FLASHLIGHT_RADO)        += flashlights-rado.o
 obj-$(CONFIG_MTK_FLASHLIGHT_RADO_GPIO)   += flashlights-rado-gpio.o
 obj-$(CONFIG_MTK_FLASHLIGHT_ALPHAL5)     += flashlights-alphal5.o
+obj-$(CONFIG_MTK_FLASHLIGHT_DONGFENG)    += flashlights-dongfeng.o
 endif
 ccflags-$(CONFIG_MTK_FLASHLIGHT_DEBUG)     := -DDEBUG
 ccflags-$(CONFIG_MTK_FLASHLIGHT_PT)        += -DCONFIG_MTK_FLASHLIGHT_PT

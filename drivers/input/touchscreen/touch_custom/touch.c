@@ -112,11 +112,12 @@ EXPORT_SYMBOL(tp_judge_ic_match_commandline);
 int tp_util_get_vendor(struct hw_resource *hw_res, struct panel_info *panel_data)
 {
 	char *vendor;
-
+	int prj_id = 0;
 	panel_data->test_limit_name = kzalloc(MAX_LIMIT_DATA_LENGTH, GFP_KERNEL|GFP_DMA);
 	if (panel_data->test_limit_name == NULL) {
 		pr_err("[TP]panel_data.test_limit_name kzalloc error\n");
 	}
+	prj_id = g_tp_prj_id;
 
 	if (panel_data->tp_type == TP_UNKNOWN) {
 		pr_err("[TP]%s type is unknown\n", __func__);
@@ -140,6 +141,43 @@ int tp_util_get_vendor(struct hw_resource *hw_res, struct panel_info *panel_data
 		snprintf(panel_data->test_limit_name, MAX_LIMIT_DATA_LENGTH,
 			"tp/%d/LIMIT_%s_%s.img",
 			g_tp_prj_id, chip_name, vendor);
+	}
+
+	if ((prj_id == 24683) || (prj_id == 24601) || (prj_id == 24615) || (prj_id == 24617) || (prj_id == 24722) || (prj_id == 24723) || (prj_id == 24727) || (prj_id == 24745) || (prj_id == 24746) || (prj_id == 24747)) {
+		if (strstr(tp_dsi_display_primary, "oplus24601_hkc_ili9883c_hd_dsi_vdo_lcm_drv-nf_ili7807s")) {
+			pr_err("[TP]project is rado-HD 1\n");
+			strcpy(panel_data->manufacture_info.manufacture, vendor);
+			memcpy(panel_data->manufacture_info.version, "0xAB879HK00", 11);
+			panel_data->firmware_headfile.firmware_data = FW_24601_ILI7807S_HKC;
+			panel_data->firmware_headfile.firmware_size = sizeof(FW_24601_ILI7807S_HKC);
+		} else if (strstr(tp_dsi_display_primary, "oplus24601_djn_icnl9916ac_hd_dsi_vdo_lcm_drv-chipone,icnl9916")) {
+			pr_err("[TP]project is rado-HD 2\n");
+			strcpy(panel_data->manufacture_info.manufacture, vendor);
+			memcpy(panel_data->manufacture_info.version, "0xAB879DJ00", 11);
+			panel_data->firmware_headfile.firmware_data = FW_24601_ICNL9916AC_DJN;
+			panel_data->firmware_headfile.firmware_size = sizeof(FW_24601_ICNL9916AC_DJN);
+		}  else if (strstr(tp_dsi_display_primary, "oplus24615_txd_ili9883c_hd_dsi_vdo_lcm_drv-nf_ili7807s")) {
+			pr_err("[TP]project is rado-HD 3\n");
+			strcpy(panel_data->manufacture_info.manufacture, vendor);
+			memcpy(panel_data->manufacture_info.version, "0xAB879TXD00", 12);
+			panel_data->firmware_headfile.firmware_data = FW_24615_ILI7807S_TXD;
+			panel_data->firmware_headfile.firmware_size = sizeof(FW_24615_ILI7807S_TXD);
+		}
+	}
+	if ((prj_id == 24707) || (prj_id == 24609) || (prj_id == 24710) || (prj_id == 24711)) {
+		if (strstr(tp_dsi_display_primary, "oplus24707_tm_ili7807s_fhd_dsi_vdo_lcm_drv-nf_ili7807s")) {
+			pr_err("[TP]project is rado-FHD 1\n");
+			strcpy(panel_data->manufacture_info.manufacture, vendor);
+			memcpy(panel_data->manufacture_info.version, "0xAB936TM00", 11);
+			panel_data->firmware_headfile.firmware_data = FW_24707_ILI7807S_TM;
+			panel_data->firmware_headfile.firmware_size = sizeof(FW_24707_ILI7807S_TM);
+		} else if (strstr(tp_dsi_display_primary, "oplus24707_ds_ili7807s_fhd_dsi_vdo_lcm_drv-nf_ili7807s")) {
+			pr_err("[TP]project is rado-FHD 2\n");
+			strcpy(panel_data->manufacture_info.manufacture, vendor);
+			memcpy(panel_data->manufacture_info.version, "0xAB936DS00", 11);
+			panel_data->firmware_headfile.firmware_data = FW_24707_ILI7807S_DS;
+			panel_data->firmware_headfile.firmware_size = sizeof(FW_24707_ILI7807S_DS);
+		}
 	}
 
 	panel_data->manufacture_info.fw_path = panel_data->fw_name;

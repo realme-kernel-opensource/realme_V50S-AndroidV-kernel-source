@@ -296,14 +296,14 @@
 
 	qcom,default_iterm_ma = <303>;
 	qcom,default_temp_normal_fastchg_current_ma = <2200>;
-	qcom,default_normal_vfloat_sw_limit = <4415>;
-	qcom,default_temp_normal_vfloat_mv = <4465>;
-	qcom,default_normal_vfloat_over_sw_limit = <4475>;
+	qcom,default_normal_vfloat_sw_limit = <4420>;
+	qcom,default_temp_normal_vfloat_mv = <4470>;
+	qcom,default_normal_vfloat_over_sw_limit = <4480>;
 
 	qcom,default_temp_little_cool_fastchg_current_ma = <2200>;
-	qcom,default_little_cool_vfloat_sw_limit = <4415>;
-	qcom,default_temp_little_cool_vfloat_mv = <4465>;
-	qcom,default_little_cool_vfloat_over_sw_limit = <4475>;
+	qcom,default_little_cool_vfloat_sw_limit = <4440>;
+	qcom,default_temp_little_cool_vfloat_mv = <4490>;
+	qcom,default_little_cool_vfloat_over_sw_limit = <4500>;
 
 	//for PD9V or QC9V
 	qcom,vbatt_pdqc_to_5v_thr = <4500>;
@@ -365,6 +365,11 @@
 
 	oplus,uart_tx-gpio = <&pio 50 0x00>;
 	oplus,uart_rx-gpio = <&pio 51 0x00>;
+	/* Feature avoid battery swelling caused by high temp */
+	oplus,poweroff_high_batt_temp = <720>;
+	oplus,poweroff_emergency_batt_temp = <770>;
+	oplus,usbtemp_batt_temp_over_hot = <60>;
+	oplus,usbtemp_temp_gap_with_batt_temp_in_over_hot = <15>;
 };
 
 &lk_charger {
@@ -374,8 +379,10 @@
 	//sub_board_temp_support;
 	support_sdp_screenoff;
 	support_sdp_backlight;
-	support_quickboot_charge;
 	support_4p48_single_battery;
+	high-temp-scheme;
+	over_high_temp_thr = <60>;
+	is_support_sc6607;
 	max_charger_voltage = <15000000>;
 	boot_battery_voltage = <3400000>;
 	usb_charger_current = <500000>;

@@ -133,6 +133,11 @@ const struct flashlight_device_id flashlight_id_alphal5[] = {
 	/* {TYPE, CT, PART, "NAME", CHANNEL, DECOUPLE} */
 	{0, 0, 0, "flashlights-alphal5", 0, 1},
 };
+
+const struct flashlight_device_id flashlight_id_dongfeng[] = {
+	/* {TYPE, CT, PART, "NAME", CHANNEL, DECOUPLE} */
+	{0, 0, 0, "flashlights_dongfeng", 0, 1},
+};
 #endif //OPLUS_FEATURE_CAMERA_COMMON
 
 
